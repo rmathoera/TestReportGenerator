@@ -133,7 +133,17 @@ namespace TestReportGenerator
                 VersionDocument = 0
             };
         }
-
+        public void CreateEmptyAASSSReport()
+        {
+            _emptyReport = new CreateReport
+            {
+                TestRun = null,
+                TemplateNameDocument = null,
+                Testsuitename = null,
+                ProjectTemplate = null,
+                VersionDocument = 0
+            };
+        }
         public void CreateReport()
         {
             CreateReport createReport = new CreateReport
