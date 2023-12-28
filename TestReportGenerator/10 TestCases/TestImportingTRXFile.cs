@@ -18,9 +18,7 @@ namespace TestReportGenerator._10_TestCases
             TRX_TestReport get_TRX_Testreport = new TRX_TestReport();
 
             // Assign fullpath with trx filename
-            string trxfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxfile_v1.trx.trx";
-
-            // Act
+            string trxfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxfile_v1.trx";
             string FullPathToFile = TRX_TestReport.Import_TRX_File(trxfile);
 
             // Assert 
@@ -34,14 +32,13 @@ namespace TestReportGenerator._10_TestCases
             TRX_TestReport get_TRX_Testreport = new TRX_TestReport();
 
             // Assign fullpath with trx xslt filename
-            string trxxsltfile = @"\testdata\testcase\trxxsltfile_v1.trx";
+            string trxxsltfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxxsltfile_v1.xslt";
 
             // Act
-            string FullPathToFile = TRX_TestReport.Import_TRX_XSLT_File(trxxsltfile);
-
-            // Assert 
-            Assert.IsNotNull(FullPathToFile);
-
+            TRX_TestReport.Import_TRX_XSLT_File(trxxsltfile);
+            
+            // Assert
+            Assert.IsTrue(TRX_TestReport.Result);
         }
         [TestMethod]
         public void Validate_TRX_File_Format()
@@ -49,9 +46,9 @@ namespace TestReportGenerator._10_TestCases
             // Assign class where methods are 
             TRX_TestReport get_TRX_Testreport = new TRX_TestReport();
             // Assign fullpath with trx filename
-            string trxfile = @"\testdata\testcase\trxfile_v1.trx";
+            string trxfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxfile_v1.trx";
             // Assign fullpath with trx xslt filename
-            string trxxsltfile = @"\testdata\testcase\trxxsltfile_v1.trx";
+            string trxxsltfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxxsltfile_v1.xslt";
 
             // Act/Assert
             Assert.IsNotNull(TRX_TestReport.ValidateTRX(trxfile, trxxsltfile));
@@ -64,7 +61,13 @@ namespace TestReportGenerator._10_TestCases
             TRX_TestReport get_TRX_Testreport = new TRX_TestReport();
 
             // Assign fullpath with trx filename
-            string trxfile = @"\testdata\testcase\trxfile_v1.trx";
+            string trxfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxfile_v1.trx";
+
+            // Assign fullpath with xlts filename
+            string trxxsltfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxxsltfile_v1.xslt";
+            
+            // Act
+            TRX_TestReport.Import_TRX_XSLT_File(trxxsltfile);
 
             // Act
             string FullPathToFile = TRX_TestReport.Import_TRX_File(trxfile);
@@ -79,7 +82,13 @@ namespace TestReportGenerator._10_TestCases
             TRX_TestReport get_TRX_Testreport = new TRX_TestReport();
 
             // Assign fullpath with trx filename
-            string trxfile = @"\testdata\testcase\trxfile_v1.trx";
+            string trxfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxfile_v1.trx";
+
+            // Assign fullpath with xlts filename
+            string trxxsltfile = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\trxxsltfile_v1.xslt";
+
+            // Act
+            TRX_TestReport.Import_TRX_XSLT_File(trxxsltfile);
 
             // Act
             string FullPathToFile = TRX_TestReport.Import_TRX_File(trxfile);
