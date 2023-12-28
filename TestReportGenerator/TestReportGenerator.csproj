@@ -15,7 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="10 TestCases\" />
+    <Folder Include="03 Importers\MSTest\" />
+    <Folder Include="04 Exporters\HTML\" />
+    <Folder Include="04 Exporters\TextLog\" />
+    <Folder Include="04 Exporters\TextJson\" />
   </ItemGroup>
 
 </Project>

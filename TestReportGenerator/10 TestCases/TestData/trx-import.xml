@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="2f6e9d1a-5c7d-4b1d-8f5a-2c5b3e1e6f6d" name="TestResults" runUser="DESKTOP-12345\user" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Results>
+    <UnitTestResult executionId="2f6e9d1a-5c7d-4b1d-8f5a-2c5b3e1e6f6d" testId="f9c8d7e6-4b1d-8f5a-2c5b3e1e6f6d" testName="Test1" computerName="DESKTOP-12345" duration="00:00:00.0010000" startTime="2023-12-28T13:28:39.0000000+01:00" endTime="2023-12-28T13:28:39.0010000+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2f6e9d1a-5c7d-4b1d-8f5a-2c5b3e1e6f6d" />
+    <UnitTestResult executionId="2f6e9d1a-5c7d-4b1d-8f5a-2c5b3e1e6f6d" testId="f9c8d7e6-4b1d-8f5a-2c5b3e1e6f6d" testName="Test2" computerName="DESKTOP-12345" duration="00:00:00.0010000" startTime="2023-12-28T13:28:39.0010000+01:00" endTime="2023-12-28T13:28:39.0020000+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2f6e9d1a-5c7d-4b1d-8f5a-2c5b3e1e6f6d" />
+  </Results>
+</TestRun>
