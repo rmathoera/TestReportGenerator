@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="TestResult">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TemplateNameDocument" type="xs:string"/>
+        <xs:element name="ProjectTemplate" type="xs:string"/>
+        <xs:element name="VersionDocument" type="xs:int"/>
+        <xs:element name="Testsuitename" type="xs:string"/>
+        <xs:element name="TestRun">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TestrunNumber" type="xs:int"/>
+              <xs:element name="Testname" type="xs:string"/>
+              <xs:element name="Testmachine" type="xs:string"/>
+              <xs:element name="Testenvironment" type="xs:string"/>
+              <xs:element name="Testexcuter" type="xs:string"/>
+              <xs:element name="Operatingsystem" type="xs:string"/>
+              <xs:element name="Tests" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="TestCaseId" type="xs:int"/>
+                    <xs:element name="TestCaseName" type="xs:string"/>
+                    <xs:element name="TestCategory" type="xs:string"/>
+                    <xs:element name="StartDateTime" type="xs:string"/>
+                    <xs:element name="StopDateTime" type="xs:string"/>
+                    <xs:element name="Duration" type="xs:string"/>
+                    <xs:element name="TestResult" type="xs:string"/>
+                    <xs:element name="TestLogLine" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Logtimestamp" type="xs:string"/>
+                          <xs:element name="Loglinedescription" type="xs:string"/>
+                          <xs:element name="LogAttachmentId" type="xs:int" minOccurs="0"/>
+                          <xs:element name="LogLineDescription" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

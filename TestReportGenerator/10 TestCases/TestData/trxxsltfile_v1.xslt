@@ -26,14 +26,14 @@
           <xsl:variable name="totalduration">
             <xsl:choose>
               <xsl:when test="@duration">
-                <xsl:variable name="duration" select="xs:dateTime(@endTime) - xs:dateTime(@startTime)" />
+                <xsl:variable name="duration1" select="xs:dateTime(@endTime) - xs:dateTime(@startTime)" />
                 <xsl:variable name="milisecond" select="substring-after(@duration, '.')"/>
                 <xsl:value-of select="hours-from-duration($duration)*3600 + minutes-from-duration($duration)*60 + seconds-from-duration($duration)"/>
                 <xsl:text>.</xsl:text>
                 <xsl:value-of select="$milisecond"/>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:variable name="duration" select="xs:dateTime(@endTime) - xs:dateTime(@startTime)" />
+                <xsl:variable name="duration2" select="xs:dateTime(@endTime) - xs:dateTime(@startTime)" />
                 <xsl:value-of select="hours-from-duration($duration)*3600 + minutes-from-duration($duration)*60 + seconds-from-duration($duration)"/>
               </xsl:otherwise>
             </xsl:choose>

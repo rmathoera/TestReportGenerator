@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON to HTML Example</title>
+    <!-- Include your stylesheets, scripts, or other metadata here -->
+</head>
+<body>
+
+    <h1>JSON to HTML Example</h1>
+
+    <div id="jsonDataDisplay">
+        {
+        "TemplateNameDocument": "TestResult",
+        "ProjectTemplate": "CompanyXYZTheme",
+        "VersionDocument": 1,
+        "Testsuitename": "testsuite TEST OF XYZ project",
+        "TestRun": {
+        "TestrunNumber": 1,
+        "Testname": "Test Run Name",
+        "Testmachine": "TEST-MACHINE-ENV",
+        "Testenvironment": "pipeline CI or CD",
+        "Testexcuter": "name of user or system that execute test suite",
+        "Operatingsystem": "Windows",
+        "Tests": [
+        {
+        "TestCaseId": 123,
+        "TestCaseName": "Test Case 123",
+        "TestCategory": "Functional Acceptance Test",
+        "StartDateTime": "2023-12-01 11:30:00.000",
+        "StopDateTime": "2023-12-01 11:35:10.000",
+        "Duration": "15600",
+        "TestResult": "Passed",
+        "TestLogLine": [
+        {
+        "Logtimestamp": "2023-12-01 11:30:05.000",
+        "Loglinedescription": "test is started",
+        "LogAttachmentId": 434252
+        },
+        {
+        "Logtimestamp": "2023-12-01 11:30:06.000",
+        "Loglinedescription": "first test step executed",
+        "LogAttachmentId": null
+        },
+        {
+        "Logtimestamp": "2023-12-01 11:33:08.000",
+        "LogLineDescription": "second test step executed",
+        "LogAttachmentId": null
+        },
+        {
+        "Logtimestamp": "2023-12-01 11:34:05.000",
+        "LogLineDescription": "test is stopping",
+        "LogAttachmentId": null
+        }
+        ]
+        },
+        {
+        "TestCaseId": 2568,
+        "TestCaseName": "Test Case 2568",
+        "TestCategory": "Unit Test",
+        "StartDateTime": "2023-12-01 11:56:00.000",
+        "StopDateTime": "2023-12-01 11:58:10.000",
+        "Duration": "15600",
+        "TestResult": "Failed",
+        "TestLogLine": [
+        {
+        "Logtimestamp": "2023-12-01 11:56:05.000",
+        "LogLineDescription": "test is started",
+        "LogAttachmentId": null
+        },
+        {
+        "Logtimestamp": "2023-12-01 11:56:06.000",
+        "LogLineDescription": "first test step executed",
+        "LogAttachmentId": null
+        },
+        {
+        "Logtimestamp": "2023-12-01 11:57:08.000",
+        "LogLineDescription": "second test step executed",
+        "LogAttachmentId": null
+        },
+        {
+        "Logtimestamp": "2023-12-01 11:58:05.000",
+        "LogLineDescription": "test is stopping",
+        "LogAttachmentId": null
+        }
+        ]
+        }
+        ]
+        }
+        }
+    </div>
+
+    <script>
+        // Accessing the jsonData variable injected by C#
+        if (typeof jsonData !== 'undefined') {
+            // Access and display the JSON data
+            var jsonDataDisplay = document.getElementById('jsonDataDisplay');
+            jsonDataDisplay.innerHTML = '<pre>' + JSON.stringify(jsonData, null, 2) + '</pre>';
+        } else {
+            // Handle the case where jsonData is not defined or injected
+            console.error('jsonData is not defined.');
+        }
+    </script>
+
+</body>
+</html>
