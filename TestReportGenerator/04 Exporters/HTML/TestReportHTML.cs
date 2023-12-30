@@ -94,20 +94,20 @@ namespace TestReportGenerator._04_Exporters.HTML
             return expectedJson;
         }
 
-        public string? HTMLPath = @"C:\\Repos\\TestReportGenerator\\TestReportGenerator\\05 InternalFiles\\HTMLTestReport.html";
-        public string? CSSPath = @"C:\\Repos\\TestReportGenerator\\TestReportGenerator\\05 InternalFiles\\HTMLTestReport.css";
+        public string? HTMLPath = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.html";
+        public string? CSSPath = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.css";
         public string? CSS { get; set; }
 
         internal void CheckCSS(string? CSS)
         {
             if (CSS == null)
             {
-                this.CSS = @"C:\\Repos\\TestReportGenerator\\TestReportGenerator\\05 InternalFiles\\HTMLTestReport.css";
+                this.CSS = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.css";
             }
 
             if ((CSS != null) && (CSS == "CustomizedHTMLTestReport"))
             {
-                this.CSS = @"C:\\Repos\\TestReportGenerator\\TestReportGenerator\\05 InternalFiles\\CustomizedHTMLTestReport.css";
+                this.CSS = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\CustomizedHTMLTestReport.css";
             }
             else
             {
@@ -120,7 +120,7 @@ namespace TestReportGenerator._04_Exporters.HTML
             try
             {
                 // Check if the file exists
-                if (File.Exists(CSSPath))
+                if (File.Exists(@CSSPath))
                 {
                     // Read the entire file content into a string
                     this.CSS = File.ReadAllText(CSSPath);
@@ -128,34 +128,72 @@ namespace TestReportGenerator._04_Exporters.HTML
                 else
                 {
                     Console.WriteLine("The file does not exist.");
+                    throw new Exception();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
+                throw new Exception();
             }
         }
         public void CreateReportHTML()
         {
-            CreateReportHTML(null,null);
-        }
+            string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
 
-        public void CreateReportHTML(string? CustomizedHTMLTestReport, string? CustomizedCSSStylesheet)
+            CreateReportHTML(reportJSON, null, null);
+        }
+        public void ParseReportJSONInToHTML(string? ReportJSON, string? HTMLTestReport)
         {
             try
             {
-                string indexFile = "index.html";
-                string cssFile = "stylesheet.css";
-                if (CustomizedHTMLTestReport != null) { indexFile = "customized.html"; this.HTMLPath = CustomizedHTMLTestReport; }
-                if (CustomizedCSSStylesheet != null) { cssFile = "customized_stylesheet"; this.CSSPath = CustomizedCSSStylesheet; }
-                ReadCSS(CSS);
-                CheckCSS(null);
-                File.Copy(HTMLPath, indexFile);
-                File.Copy(CSSPath, cssFile);
+                if (ReportJSON == null)
+                {
+                    throw new Exception();
+                }
+                // Read the HTML file content
+                string stringHTMLTestReport = File.ReadAllText(HTMLTestReport);
+                // Read the ReportJSON file content
+                string stringReportJSON = File.ReadAllText(ReportJSON);
+
+                // Perform text replacement
+                string updatedHtmlContent = stringHTMLTestReport.Replace("%ReplacewithReportJSONXML%", stringReportJSON);
+
+                // Write the updated content back to the file
+                File.WriteAllText(HTMLTestReport, updatedHtmlContent);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public void CreateReportHTML(string? ReportJSON, string? CustomizedHTMLTestReport, string? CustomizedCSSStylesheet)
+        {
+            try
+            {
+                string? indexFile = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.html";
+                string? cssFile = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.css";
+                string? testReport = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+                if (testReport == null) { Console.WriteLine("No TestReport: "); }
+                if (ReportJSON == null) { ReportJSON = testReport; }
+                if (CustomizedHTMLTestReport == null) { CustomizedHTMLTestReport = indexFile; }
+                if (CustomizedCSSStylesheet == null) { CustomizedCSSStylesheet = cssFile; }
+                ReadCSS(CustomizedCSSStylesheet);
+                CheckCSS(CustomizedCSSStylesheet);
+                ParseReportJSONInToHTML(ReportJSON, CustomizedHTMLTestReport);
+
+                //if (File.Exists(ReportJSON)) { File.Delete(ReportJSON); }
+                //if (File.Exists(CustomizedHTMLTestReport)) { File.Delete(CustomizedHTMLTestReport); }
+                //if (File.Exists(CustomizedCSSStylesheet)) { File.Delete(CustomizedCSSStylesheet); }
+                File.Copy(ReportJSON, "ReportJSON.xml");
+                File.Copy(CustomizedHTMLTestReport, "CustomizedIndex.html");
+                File.Copy(CustomizedCSSStylesheet, "CustomizedCSSStylesheet.css");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
+                throw new Exception();
             }
         }
         internal void ParseReportJSONInToHTMLTestReport()
