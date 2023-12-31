@@ -188,6 +188,7 @@ namespace TestReportGenerator._04_Exporters.HTML
 
                 ReadCSS(CustomizedCSSStylesheet);
                 CheckCSS(CustomizedCSSStylesheet);
+                ParseReportJSONWithHTMLTags("ReportJSON.xml");
                 ParseReportJSONInToHTML("ReportJSON.xml", "CustomizedIndex.html");
             }
             catch (Exception ex)
@@ -196,16 +197,68 @@ namespace TestReportGenerator._04_Exporters.HTML
                 throw new Exception();
             }
         }
-        internal void ParseReportJSONInToHTMLTestReport()
+
+        public void ParseReportJSONWithHTMLTags(string? ReportJSON)
         {
-            // Create the JSON structure
-            var jsonData = this.expectedJsonReport();
+            try
+            {
+                if (ReportJSON == null)
+                {
+                    throw new ArgumentNullException(nameof(ReportJSON), "Report JSON is null.");
+                }
 
-            // Serialize the JSON object to a string
-            string json = JsonConvert.SerializeObject(jsonData);
+                // Read the ReportJSON file content
+                string stringReportJSON = File.ReadAllText(ReportJSON);
 
-            // Inject the JSON string into an HTML element
-            string script = $"<script>var jsonData = {json};</script>";
+                // Dictionary for mapping JSON tags to HTML structures
+                Dictionary<string, string> replacements = new Dictionary<string, string>
+        {
+            { "<TestResult>\r\n  <TemplateNameDocument>", "<TestReport>\r\n  <TemplateNameDocument>" },
+            { "</TestRun>\r\n</TestResult>", "</TestRun>\r\n</TestReport>" },
+            { "<TemplateNameDocument>", "<p>Template Name Document: " },
+            { "<ProjectTemplate>", "<p>Project Template: " },
+            { "<VersionDocument>", "<p>Version Document: " },
+            { "<Testsuitename>", "<p>Test Suite Name: " },
+            { "<TestrunNumber>", "<p>Test Run Number: " },
+            { "<TestCategory>", "<p>Test Category: " },
+            { "<Testname>", "<p>Test Name: " },
+            { "<Testmachine>", "<p>Test Machine: " },
+            { "<Testenvironment>", "<p>Test Environment: " },
+            { "<Testexcuter>", "<p>Test Executor: " },
+            { "</Operatingsystem>", "</Operatingsystem><p>" },
+            { "<Operatingsystem>", "<p>Operating System: " },
+            { "<TestCaseId>", "<p>Test Case ID: " },
+            { "<TestCaseName>", "<p>Test Case Name: " },
+            { "<StartDateTime>", "<p>Start Date Time: " },
+            { "<StopDateTime>", "<p>Stop Date Time: " },
+            { "<Duration>", "<p>Duration: " },
+            { "<TestResult>", "<p>Test Result: " },
+            { "<Logtimestamp>", "<p>Log Timestamp: " },
+            { "<Loglinedescription>", "<p>Log Line Description: " },
+            { "<LogAttachmentId>", "<p>Log Attachment ID: " }
+        };
+
+
+                // Apply replacements
+                foreach (var replacement in replacements)
+                {
+                    stringReportJSON = stringReportJSON.Replace(replacement.Key, replacement.Value);
+                }
+
+                // Write the updated content back to the file
+                File.WriteAllText(ReportJSON, stringReportJSON);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine($"ArgumentNullException: {ex.ParamName}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                throw;
+            }
         }
+
     }
 }

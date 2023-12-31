@@ -23,29 +23,24 @@ td {
 th {
     background-color: #f2f2f2;
 }
-/* Style for TestResult tag */
-TestResult {
-    display: block;
-    margin-bottom: 40px;
-    /* Add any other styles as needed */
-}
 
+p,
 TemplateNameDocument,
 ProjectTemplate,
 VersionDocument,
 Testsuitename {
+    color: navy;
+    font-weight: bold;
     display: block;
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: left;
+    margin-bottom: 12px;
 }
-
 
 /* Style for TestRun tag */
 TestRun {
+    color: navy;
+    font-weight: bold;
     display: block;
-    margin-bottom: 20px;
-    /* Add any other styles as needed */
+    margin-bottom: 12px;
 }
 
 /* Style for Testrun tag */
@@ -58,23 +53,30 @@ Operatingsystem {
     color: blue;
     display: block;
     margin-bottom: 20px;
-    font-size: 2em;
+    font-size: 1em;
 }
 
 Tests {
     color: navy;
     display: block;
     margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+    padding: 15px;
+    background-color: #fff;
 }
 
 /* Style for Tests tag */
-TestCaseId, 
-TestCaseName, 
-TestCategory, 
-StartDateTime, 
-StopDateTime, 
-Duration, 
-TestResult, 
+TestCaseId,
+TestCaseName,
+TestCategory,
+TestResult,
+StartDateTime,
+StopDateTime,
+Duration,
 TestLogLine {
     font-weight: bold;
     color: green;
@@ -92,4 +94,41 @@ Logtimestamp, LoglineDescription {
     font-style: italic;
     margin-left: 0.3in;
     font-style: italic;
+}
+/* Style for tabs */
+.tab {
+    display: none;
+}
+
+.tab-label {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    display: inline-block;
+}
+
+    .tab-label.active {
+        background-color: #fff;
+        border-bottom: 1px solid #fff;
+    }
+
+.tab-content {
+    border: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+    padding: 15px;
+    background-color: #fff;
+}
+/* Style for the toggle button */
+.toggle-btn {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    color: blue;
+}
+/* Style to hide the list items by default */
+.collapsed {
+    display: none;
 }

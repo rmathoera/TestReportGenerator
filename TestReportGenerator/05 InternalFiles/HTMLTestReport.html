@@ -7,5 +7,55 @@
 </head>
 <body>
     %ReplacewithReportJSONXML%
+    <script>
+        customElements.define('custom-tabs', class extends HTMLElement { });
+
+        customElements.define('custom-tab', class extends HTMLElement {
+            connectedCallback() {
+                this.style.display = 'none';
+            }
+        });
+
+        customElements.define('custom-tabs', class extends HTMLElement {
+            connectedCallback() {
+                this.selectedTab = this.querySelector('[selected]');
+                if (!this.selectedTab) {
+                    this.selectedTab = this.querySelector('custom-tab');
+                    if (this.selectedTab) {
+                        this.selectedTab.setAttribute('selected', '');
+                    }
+                }
+                if (this.selectedTab) {
+                    this.showTab(this.selectedTab);
+                }
+                const labels = this.querySelectorAll('custom-tab');
+                labels.forEach(tab => {
+                    tab.addEventListener('click', () => this.showTab(tab));
+                });
+            }
+
+            showTab(tab) {
+                const tabs = this.querySelectorAll('custom-tab');
+                tabs.forEach(t => {
+                    t.style.display = 'none';
+                    t.removeAttribute('selected');
+                });
+                tab.style.display = 'block';
+                tab.setAttribute('selected', '');
+            }
+        });
+    </script>
+    <script>
+        function toggleList() {
+            var lists = document.querySelectorAll('#testCaseList');
+            lists.forEach(list => {
+                list.classList.toggle('collapsed');
+            });
+        }
+
+        function toggleListItem(item) {
+            item.classList.toggle('collapsed');
+        }
+    </script>
 </body>
 </html>
