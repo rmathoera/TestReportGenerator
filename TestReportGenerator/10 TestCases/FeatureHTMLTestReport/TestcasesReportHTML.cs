@@ -33,7 +33,9 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
             //string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
             // and ReportJSON is validated for HTML TestReport
             // and default HTML TestReport exists
+            Assert.IsTrue(File.Exists(@"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.html"));
             // and default CSS TestReport exists
+            Assert.IsTrue(File.Exists(@"C:\Repos\TestReportGenerator\TestReportGenerator\stylesheets\HTMLTestReport.css"));
 
             // Act
             // When generating HTML TestReport
@@ -52,14 +54,15 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
 
             // Assign
             // Given output ReportJSON file exists
-            string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+            Assert.IsTrue(File.Exists(@"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml"));
             // and ReportJSON is validated for HTML TestReport
             // and default HTML TestReport exists
             // and costumized CSS TestReport exists
+            Assert.IsTrue(File.Exists(@"C:\Repos\TestReportGenerator\TestReportGenerator\stylesheets\CustomizedCSSStylesheet.css"));
             // Act
 
             // When generating HTML TestReport 
-            string useCustomizedCSSStylesheet = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\CustomizedHTMLTestReport.css";
+            string useCustomizedCSSStylesheet = @"C:\Repos\TestReportGenerator\TestReportGenerator\stylesheets\CustomizedCSSStylesheet.css";
             testReportHTML.CreateReportHTML(null, null, useCustomizedCSSStylesheet);
 
             // Assert
@@ -78,9 +81,9 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
             string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
             // and ReportJSON is validated for HTML TestReport
             // and customized HTML TestReport exists
-            string useCustomizedHTMLTestReport = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\CustomizedHTMLTestReport.html";
+            string useCustomizedHTMLTestReport = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\CustomizedIndex.html";
             // and customized CSS TestReport exists
-            string useCustomizedCSSStylesheet = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\CustomizedHTMLTestReport.css";
+            string useCustomizedCSSStylesheet = @"C:\Repos\TestReportGenerator\TestReportGenerator\stylesheets\CustomizedCSSStylesheet.css";
             // Act
             // When generating HTML TestReport 
             testReportHTML.CreateReportHTML(reportJSON, useCustomizedHTMLTestReport, useCustomizedCSSStylesheet);

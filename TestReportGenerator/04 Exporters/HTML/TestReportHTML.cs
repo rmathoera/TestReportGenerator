@@ -95,7 +95,8 @@ namespace TestReportGenerator._04_Exporters.HTML
         }
 
         public string? HTMLPath = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.html";
-        public string? CSSPath = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.css";
+        public string? CSSPath = @"C:\Repos\TestReportGenerator\TestReportGenerator\stylesheets\HTMLTestReport.css";
+        public string? TestReportXML = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
         public string? CSS { get; set; }
 
         internal void CheckCSS(string? CSS)
@@ -139,9 +140,9 @@ namespace TestReportGenerator._04_Exporters.HTML
         }
         public void CreateReportHTML()
         {
-            string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+            //string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
 
-            CreateReportHTML(reportJSON, null, null);
+            CreateReportHTML(null, null, null);
         }
         public void ParseReportJSONInToHTML(string? ReportJSON, string? HTMLTestReport)
         {
@@ -172,29 +173,78 @@ namespace TestReportGenerator._04_Exporters.HTML
         {
             try
             {
-                string? indexFile = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.html";
-                string? cssFile = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.css";
-                string? testReport = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+                string? HTMLTestReport = HTMLPath;// @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\HTMLTestReport.html";
+                string? CSSStylesheet = CSSPath; // @"C:\Repos\TestReportGenerator\TestReportGenerator\stylesheets\HTMLTestReport.css";
+                string? testReport = TestReportXML; // @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
                 if (testReport == null) { Console.WriteLine("No TestReport: "); }
                 if (ReportJSON == null) { ReportJSON = testReport; }
-                if (CustomizedHTMLTestReport == null) { CustomizedHTMLTestReport = indexFile; }
-                if (CustomizedCSSStylesheet == null) { CustomizedCSSStylesheet = cssFile; }
+                if (CustomizedHTMLTestReport != null) { HTMLTestReport = CustomizedHTMLTestReport; }
+                if (CustomizedCSSStylesheet != null) { CSSStylesheet = CustomizedCSSStylesheet; }
                 if (File.Exists(ReportJSON)) { File.Delete("ReportJSON.xml"); }
+                if (File.Exists(HTMLTestReport)) { File.Delete("Index.html"); }
                 if (File.Exists(CustomizedHTMLTestReport)) { File.Delete("CustomizedIndex.html"); }
                 if (File.Exists(CustomizedCSSStylesheet)) { File.Delete("CustomizedCSSStylesheet.css"); }
                 File.Copy(ReportJSON, "ReportJSON.xml");
-                File.Copy(CustomizedHTMLTestReport, "CustomizedIndex.html");
-                File.Copy(CustomizedCSSStylesheet, "CustomizedCSSStylesheet.css");
-
-                ReadCSS(CustomizedCSSStylesheet);
-                CheckCSS(CustomizedCSSStylesheet);
                 ParseReportJSONWithHTMLTags("ReportJSON.xml");
-                ParseReportJSONInToHTML("ReportJSON.xml", "CustomizedIndex.html");
+                if (CustomizedCSSStylesheet != null)
+                {
+                    File.Copy(CustomizedCSSStylesheet, "CustomizedCSSStylesheet.css");
+                    ReadCSS(CustomizedCSSStylesheet);
+                    CheckCSS(CustomizedCSSStylesheet);
+                }
+                if (CustomizedHTMLTestReport == null)
+                {
+                    File.Copy(HTMLTestReport, "Index.html");
+                    ParseReportJSONInToHTML("ReportJSON.xml", "Index.html");
+                    if (CustomizedCSSStylesheet!=null)
+                    {
+                        ParseReportStyleSheetInToHTML("Index.html",CustomizedCSSStylesheet);
+                    }
+                }
+                else
+                {
+                    File.Copy(CustomizedHTMLTestReport, "CustomizedIndex.html");
+                    ParseReportJSONInToHTML("ReportJSON.xml", "CustomizedIndex.html");
+                    if (CustomizedCSSStylesheet != null)
+                    {
+                        ParseReportStyleSheetInToHTML("CustomizedIndex.html", CustomizedCSSStylesheet);
+                    }
+                }
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
                 throw new Exception();
+            }
+        }
+
+        private void ParseReportStyleSheetInToHTML(string? HTMLTestReport, string? customizedCSSStylesheet)
+        {
+            try
+            {
+                if (HTMLTestReport == null)
+                {
+                    throw new Exception();
+                }
+                // Read the HTML file content
+                string stringHTMLTestReport = File.ReadAllText(HTMLTestReport);
+
+                // Perform text replacement
+                string updatedHtmlContent = stringHTMLTestReport.Replace("stylesheets\\HTMLTestReport.css", stringHTMLTestReport);
+
+                // Write the updated content back to the file
+                File.WriteAllText(HTMLTestReport, updatedHtmlContent);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine($"ArgumentNullException: {ex.ParamName}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                throw;
             }
         }
 

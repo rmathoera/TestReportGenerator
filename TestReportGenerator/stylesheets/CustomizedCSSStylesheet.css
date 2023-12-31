@@ -23,29 +23,27 @@ td {
 th {
     background-color: #f2f2f2;
 }
-/* Style for TestResult tag */
-TestResult {
-    display: block;
-    margin-bottom: 40px;
-    /* Add any other styles as needed */
-}
 
+p,
 TemplateNameDocument,
 ProjectTemplate,
 VersionDocument,
 Testsuitename {
-    display: block;
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: left;
-}
-
-Tests {
     color: navy;
+    font-weight: bold;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
+/* Style for TestRun tag */
+TestRun {
+    color: navy;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* Style for Testrun tag */
 TestrunNumber,
 Testname,
 Testmachine,
@@ -55,26 +53,35 @@ Operatingsystem {
     color: blue;
     display: block;
     margin-bottom: 20px;
-    font-size: 2em;
+    font-size: 1em;
 }
-/* Style for TestRun tag */
-TestRun {
+
+Tests {
+    color: navy;
     display: block;
     margin-bottom: 20px;
-    /* Add any other styles as needed */
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+    padding: 15px;
+    background-color: #fff;
 }
 
-/* Style for TestCaseId tag */
-TestCaseId {
+/* Style for Tests tag */
+TestCaseId,
+TestCaseName,
+TestCategory,
+TestResult,
+StartDateTime,
+StopDateTime,
+Duration,
+TestLogLine {
     font-weight: bold;
-    /* Add any other styles as needed */
-}
-
-/* Style for TestResult tag */
-TestResult {
-    font-weight: bold;
-    color: green; /* You can change color based on test result */
-    /* Add any other styles as needed */
+    color: green;
+    display: block;
+    margin-bottom: 12px;
 }
 
     /* Style for failed TestResult tag */
@@ -82,25 +89,11 @@ TestResult {
         color: red; /* Change color for failed tests */
     }
 
-/* Style for TestLogLine tag */
-TestLogLine {
-    color: green;
-    display: block;
-    margin-bottom: 12px;
-    /* Add any other styles as needed */
-}
-
 /* Style for Logtimestamp tag */
-Logtimestamp {
+Logtimestamp, LoglineDescription {
     font-style: italic;
-    /* Add any other styles as needed */
-}
-
-/* Style for LogLineDescription tag */
-LoglineDescription {
     margin-left: 0.3in;
     font-style: italic;
-    /* Add any styles as needed */
 }
 /* Style for tabs */
 .tab {
@@ -127,4 +120,15 @@ LoglineDescription {
     border-radius: 0 0 5px 5px;
     padding: 15px;
     background-color: #fff;
+}
+/* Style for the toggle button */
+.toggle-btn {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    color: blue;
+}
+/* Style to hide the list items by default */
+.collapsed {
+    display: none;
 }
