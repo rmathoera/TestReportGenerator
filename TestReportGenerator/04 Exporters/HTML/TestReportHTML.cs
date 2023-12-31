@@ -179,16 +179,16 @@ namespace TestReportGenerator._04_Exporters.HTML
                 if (ReportJSON == null) { ReportJSON = testReport; }
                 if (CustomizedHTMLTestReport == null) { CustomizedHTMLTestReport = indexFile; }
                 if (CustomizedCSSStylesheet == null) { CustomizedCSSStylesheet = cssFile; }
-                ReadCSS(CustomizedCSSStylesheet);
-                CheckCSS(CustomizedCSSStylesheet);
-                ParseReportJSONInToHTML(ReportJSON, CustomizedHTMLTestReport);
-
-                //if (File.Exists(ReportJSON)) { File.Delete(ReportJSON); }
-                //if (File.Exists(CustomizedHTMLTestReport)) { File.Delete(CustomizedHTMLTestReport); }
-                //if (File.Exists(CustomizedCSSStylesheet)) { File.Delete(CustomizedCSSStylesheet); }
+                if (File.Exists(ReportJSON)) { File.Delete("ReportJSON.xml"); }
+                if (File.Exists(CustomizedHTMLTestReport)) { File.Delete("CustomizedIndex.html"); }
+                if (File.Exists(CustomizedCSSStylesheet)) { File.Delete("CustomizedCSSStylesheet.css"); }
                 File.Copy(ReportJSON, "ReportJSON.xml");
                 File.Copy(CustomizedHTMLTestReport, "CustomizedIndex.html");
                 File.Copy(CustomizedCSSStylesheet, "CustomizedCSSStylesheet.css");
+
+                ReadCSS(CustomizedCSSStylesheet);
+                CheckCSS(CustomizedCSSStylesheet);
+                ParseReportJSONInToHTML("ReportJSON.xml", "CustomizedIndex.html");
             }
             catch (Exception ex)
             {
