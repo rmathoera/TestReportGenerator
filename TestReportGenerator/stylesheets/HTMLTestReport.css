@@ -40,12 +40,15 @@ Testsuitename {
     text-align: left;
 }
 
-Tests {
-    color: navy;
+
+/* Style for TestRun tag */
+TestRun {
     display: block;
     margin-bottom: 20px;
+    /* Add any other styles as needed */
 }
 
+/* Style for Testrun tag */
 TestrunNumber,
 Testname,
 Testmachine,
@@ -57,24 +60,26 @@ Operatingsystem {
     margin-bottom: 20px;
     font-size: 2em;
 }
-/* Style for TestRun tag */
-TestRun {
+
+Tests {
+    color: navy;
     display: block;
     margin-bottom: 20px;
-    /* Add any other styles as needed */
 }
 
-/* Style for TestCaseId tag */
-TestCaseId {
+/* Style for Tests tag */
+TestCaseId, 
+TestCaseName, 
+TestCategory, 
+StartDateTime, 
+StopDateTime, 
+Duration, 
+TestResult, 
+TestLogLine {
     font-weight: bold;
-    /* Add any other styles as needed */
-}
-
-/* Style for TestResult tag */
-TestResult {
-    font-weight: bold;
-    color: green; /* You can change color based on test result */
-    /* Add any other styles as needed */
+    color: green;
+    display: block;
+    margin-bottom: 12px;
 }
 
     /* Style for failed TestResult tag */
@@ -82,23 +87,9 @@ TestResult {
         color: red; /* Change color for failed tests */
     }
 
-/* Style for TestLogLine tag */
-TestLogLine {
-    color: green;
-    display: block;
-    margin-bottom: 12px;
-    /* Add any other styles as needed */
-}
-
 /* Style for Logtimestamp tag */
-Logtimestamp {
+Logtimestamp, LoglineDescription {
     font-style: italic;
-    /* Add any other styles as needed */
-}
-
-/* Style for LogLineDescription tag */
-LoglineDescription {
     margin-left: 0.3in;
     font-style: italic;
-    /* Add any styles as needed */
 }

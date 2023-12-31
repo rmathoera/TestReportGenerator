@@ -30,7 +30,7 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
             // Assign
             // Given output ReportJSON.xml file exists
             Assert.IsTrue(File.Exists(@"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml"));
-            string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+            //string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
             // and ReportJSON is validated for HTML TestReport
             // and default HTML TestReport exists
             // and default CSS TestReport exists

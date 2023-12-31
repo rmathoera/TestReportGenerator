@@ -20,4 +20,19 @@
     <Folder Include="04 Exporters\TextJson\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="05 InternalFiles\CustomizedCSSStylesheet.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="05 InternalFiles\HTMLTestReport.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="stylesheets\CustomizedCSSStylesheet.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="stylesheets\HTMLTestReport.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
