@@ -27,20 +27,5 @@
     <!-- Entry 100 -->
     <UnitTestResult executionId="UniqueExecutionID100" testId="UniqueTestID100" testName="TestName100" computerName="ComputerName100" duration="00:00:00.0010000" startTime="2023-12-28T14:01:00.0010000+01:00" endTime="2023-12-28T14:01:00.0020000+01:00" testType="TestType100" outcome="Failed" testListId="TestListID100" relativeResultsDirectory="RelativeResultsDirectory100" />
 
-    <!-- Other Result Types -->
-    <GenericTestResult computerName="Desktop" testListId="1" testId="GenericTestID1" testName="GenericTestName1" testType="UnitTest" outcome="Warning"/>
-
-    <!-- Additional Files -->
-    <ResultFiles>
-      <ResultFile path="file_path1" />
-      <ResultFile path="file_path2" />
-    </ResultFiles>
-
-    <!-- Configuration Information -->
-    <RunConfiguration name="Debug" environment="Local">
-      <TestSettings name="Default" id="TestSettingsID1">
-        <!-- Test settings details -->
-      </TestSettings>
-    </RunConfiguration>
   </Results>
 </TestRun>

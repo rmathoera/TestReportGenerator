@@ -132,3 +132,26 @@ Logtimestamp, LoglineDescription {
 .collapsed {
     display: none;
 }
+
+/* Style for the left frame */
+.left-frame {
+    height: 98%;
+    width: 5%;
+    background-color: #ccc; /* Change color as needed */
+    float: left;
+}
+
+/* Style for the right frame */
+.right-frame {
+    height: 98%;
+    width: 95%;
+    background-color: #f0f0f0; /* Change color as needed */
+    float: right;
+}
+
+/* Clear the floats to prevent layout issues */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}

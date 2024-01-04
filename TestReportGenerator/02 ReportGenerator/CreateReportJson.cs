@@ -1,16 +1,4 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestReportGenerator;
-using static System.Net.Mime.MediaTypeNames;
-using Newtonsoft.Json; // Ensure you have the Newtonsoft.Json package installed via NuGet
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Adapter;
-using System.ComponentModel;
-
-namespace TestReportGenerator
+﻿namespace TestReportGenerator
 {
     internal class CreateReport
     {
@@ -120,7 +108,7 @@ namespace TestReportGenerator
     }
     public class Report
     {
-        private CreateReport _emptyReport;
+        private CreateReport? _emptyReport;
 
         public void CreateEmptyReport()
         {

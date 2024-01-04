@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Xsl;
+using System.Xml;
 using Newtonsoft.Json;
 
 namespace TestReportGenerator._04_Exporters.HTML
@@ -144,7 +146,7 @@ namespace TestReportGenerator._04_Exporters.HTML
 
             CreateReportHTML(null, null, null);
         }
-        public void ParseReportJSONInToHTML(string? ReportJSON, string? HTMLTestReport)
+        public static void ParseReportJSONInToHTML(string? ReportJSON, string? HTMLTestReport)
         {
             try
             {
@@ -153,12 +155,12 @@ namespace TestReportGenerator._04_Exporters.HTML
                     throw new Exception();
                 }
                 // Read the HTML file content
-                string stringHTMLTestReport = File.ReadAllText(HTMLTestReport);
+                string? stringHTMLTestReport = File.ReadAllText(HTMLTestReport);
                 // Read the ReportJSON file content
-                string stringReportJSON = File.ReadAllText(ReportJSON);
+                string? stringReportJSON = File.ReadAllText(ReportJSON);
 
                 // Perform text replacement
-                string updatedHtmlContent = stringHTMLTestReport.Replace("%ReplacewithReportJSONXML%", stringReportJSON);
+                string? updatedHtmlContent = stringHTMLTestReport.Replace("%ReplacewithReportJSONXML%", stringReportJSON);
 
                 // Write the updated content back to the file
                 File.WriteAllText(HTMLTestReport, updatedHtmlContent);
@@ -196,9 +198,9 @@ namespace TestReportGenerator._04_Exporters.HTML
                 {
                     File.Copy(HTMLTestReport, "Index.html");
                     ParseReportJSONInToHTML("ReportJSON.xml", "Index.html");
-                    if (CustomizedCSSStylesheet!=null)
+                    if (CustomizedCSSStylesheet != null)
                     {
-                        ParseReportStyleSheetInToHTML("Index.html",CustomizedCSSStylesheet);
+                        ParseReportStyleSheetInToHTML("Index.html", CustomizedCSSStylesheet);
                     }
                 }
                 else
@@ -219,7 +221,7 @@ namespace TestReportGenerator._04_Exporters.HTML
             }
         }
 
-        private void ParseReportStyleSheetInToHTML(string? HTMLTestReport, string? customizedCSSStylesheet)
+        private static void ParseReportStyleSheetInToHTML(string? HTMLTestReport, string? customizedCSSStylesheet)
         {
             try
             {
@@ -248,7 +250,7 @@ namespace TestReportGenerator._04_Exporters.HTML
             }
         }
 
-        public void ParseReportJSONWithHTMLTags(string? ReportJSON)
+        public static void ParseReportJSONWithHTMLTags(string? ReportJSON)
         {
             try
             {
@@ -310,5 +312,44 @@ namespace TestReportGenerator._04_Exporters.HTML
             }
         }
 
+        public static void CreateReportHTMLFromXmlAndXslt(string reportJSON, string xsltTestResult, string htmlPageName)
+        {
+            try
+            {
+                // Load XML data
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load($@"{reportJSON}");
+
+                // Load XSLT stylesheet
+                XslCompiledTransform xslt = new XslCompiledTransform();
+                xslt.Load(xsltTestResult);
+
+                // Create StringWriter to hold the transformed output
+                using (StringWriter writer = new StringWriter())
+                {
+                    // Create XmlWriter for writing the transformed output
+                    XmlWriterSettings settings = new XmlWriterSettings();
+                    settings.OmitXmlDeclaration = true; // Omit XML declaration from the output
+                    settings.ConformanceLevel = ConformanceLevel.Auto;
+                    settings.CloseOutput = false;
+
+                    using (XmlWriter xmlWriter = XmlWriter.Create(writer, settings))
+                    {
+                        // Perform the transformation
+                        xslt.Transform(xmlDoc, null, xmlWriter);
+                    }
+
+                    // Get the transformed output as a string
+                    string htmlOutput = writer.ToString();
+
+                    // Write the updated content back to the file
+                    File.WriteAllText(htmlPageName, htmlOutput);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
     }
 }

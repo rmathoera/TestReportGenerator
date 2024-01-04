@@ -29,7 +29,7 @@ TemplateNameDocument,
 ProjectTemplate,
 VersionDocument,
 Testsuitename {
-    color: navy;
+   /* color: navy;*/
     font-weight: bold;
     display: block;
     margin-bottom: 12px;
@@ -132,3 +132,58 @@ Logtimestamp, LoglineDescription {
 .collapsed {
     display: none;
 }
+/* Style for the header */
+header {
+    height: 2%;
+    width: 100%;
+    background-color: #000080;
+    color: white;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+    font-size: 2em;
+}
+/* Style for the left frame */
+.left-frame {
+    height: 98%;
+    width: 5%;
+    background-color: #001f3f;
+    color: white;
+    float: left;
+}
+
+/* Style for the right frame */
+.right-frame {
+    height: 98%;
+    width: 95%;
+    background-color: #00022e;
+    color: white;
+    float: right;
+}
+
+/* Clear the floats to prevent layout issues */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Style for columns */
+.container {
+    width: 100%;
+    /*max-width: 1200px;*/ /* Set a maximum width for the container */
+    /*margin: 0 auto;*/ /* Center the container */
+    /*display: flex;*/ /* Use flexbox for columns */
+}
+/* Colors for an navy style page
+    Navy: #000080
+    Dark Navy Blue: #00022e
+    Navy Blue: #001f3f
+    Medium Navy Blue: #0066cc
+    Deep Navy Blue: #000080
+    Rich Navy Blue: #001f54
+    Royal Navy Blue: #4c516d
+    Light Navy Blue: #6e7b8b
+    Slate Navy Blue: #6a5acd
+    Midnight Navy Blue: #191970
+*/

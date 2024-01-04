@@ -92,7 +92,48 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
             // Then validate HTML TestReport
 
         }
+        [TestMethod]
+        // Scenario : Create HTML page for with only TestRun data
+        public void CreateAnHTMLTestReportWithOnlyTestRunData()
+        {
+            TestReportHTML testReportHTML = new TestReportHTML();
+            // Given an trx file exists
+            // And trx file is converted into an xml file
+            string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+            // When transforming xml file with xslt (TestRun)
+            string xsltTestRun = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSONTestRuns.xslt";
+            TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTestRun, "TestRun.html");
+            // Then HTML file is created with only the TRX Testrun data presented.
+            Assert.Equals(string.Empty, "TestRun.html");
+        }
+
+        [TestMethod]
+        // Scenario : Create HTML page for with only TestResult data
+        public void CreateAnHTMLTestReportWithOnlyTestResults()
+        {
+            TestReportHTML testReportHTML = new TestReportHTML();
+            // Given an trx file exists
+            // And trx file is converted into an xml file
+            string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+            // When transforming xml file with xslt (TestResult)
+            string xsltTestResult = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSONTestResult.xslt";
+            TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTestResult, "TestResult.html");
+            // Then HTML file is created with only the TRX TestResult data presented.
+            Assert.Equals(string.Empty, "TestResult.html");
+        }
+        [TestMethod]
+        // Scenario : Create HTML page for with only Tests data
+        public void CreateAnHTMLTestReportWithOnlyTests()
+        {
+            TestReportHTML testReportHTML = new TestReportHTML();
+            // Given an trx file exists
+            // And trx file is converted into an xml file
+            string reportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+            // When transforming xml file with xslt (Tests)
+            string xsltTests = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSONTests.xslt";
+            TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTests, "Tests.html");
+            // Then HTML file is created with only the TRX Tests data presented.
+            Assert.Equals(string.Empty, "Tests.html");
+        }
     }
-
-
 }

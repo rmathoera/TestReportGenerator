@@ -21,6 +21,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="05 InternalFiles\ReportJSONTests.xslt">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="05 InternalFiles\ReportJSONTestRuns.xslt">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="05 InternalFiles\ReportJSONTestResult.xslt">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="05 InternalFiles\trxfile_v1.trx">
+      <SubType>Designer</SubType>
+    </None>
     <None Update="stylesheets\CustomizedCSSStylesheet.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -18,7 +18,7 @@ namespace TestReportGenerator._03_Importers.CommandLine
         public static bool Result { get; set; }
         public TRX_TestReport()
         {
-            XslCompiledTransform xslCompiledTransform = new XslCompiledTransform();
+            //XslCompiledTransform xslCompiledTransform = new XslCompiledTransform();
         }
 
         internal static string? Import_TRX_File(string trxfile)
@@ -34,6 +34,7 @@ namespace TestReportGenerator._03_Importers.CommandLine
                     TRXFile = trxfile;
                     XDocument trxDocument = XDocument.Load(trxfile);
                     var jsonResult = JsonConvert.SerializeXNode(trxDocument);
+                    Result = true; // Assuming Result is a global/static variable to track success
                     return jsonResult.ToString();
                 }
                 return null;
@@ -60,12 +61,6 @@ namespace TestReportGenerator._03_Importers.CommandLine
                 Result = true; // Assuming Result is a global/static variable to track success
 
                 // Optionally, you might want to return a success indicator here or perform other actions
-            }
-            catch (ArgumentNullException ex)
-            {
-                // Handle ArgumentNullException (if required)
-                // Log or throw a more specific exception based on your application logic
-                throw;
             }
             catch (Exception ex)
             {
@@ -102,7 +97,7 @@ namespace TestReportGenerator._03_Importers.CommandLine
                         return JsonConvert.SerializeXNode(XDocument.Parse(sw.ToString()));
                     }
                 }
-
+                Result = true; // Assuming Result is a global/static variable to track success
                 return null;
             }
             catch (Exception ex)
@@ -115,11 +110,13 @@ namespace TestReportGenerator._03_Importers.CommandLine
 
         internal static object? ToBaseXML(string fullPathToFile)
         {
+            Result = false; // Assuming Result is a global/static variable to track success
             throw new NotImplementedException();
         }
 
         internal static object? ValidateTRX(string trxfile, string trxxsltfile)
         {
+            Result = false; // Assuming Result is a global/static variable to track success
             throw new NotImplementedException();
         }
     }
