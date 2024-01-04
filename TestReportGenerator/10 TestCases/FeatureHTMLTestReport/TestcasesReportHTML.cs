@@ -105,7 +105,7 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
             string xsltTestRun = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSONTestRuns.xslt";
             TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTestRun, "TestRun.html");
             // Then HTML file is created with only the TRX Testrun data presented.
-            Assert.Equals(string.Empty, "TestRun.html");
+            Assert.AreEqual(true, TestReportHTML.Result);
         }
 
         [TestMethod]
@@ -120,7 +120,7 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
             string xsltTestResult = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSONTestResult.xslt";
             TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTestResult, "TestResult.html");
             // Then HTML file is created with only the TRX TestResult data presented.
-            Assert.Equals(string.Empty, "TestResult.html");
+            Assert.AreEqual(true, TestReportHTML.Result);
         }
         [TestMethod]
         // Scenario : Create HTML page for with only Tests data
@@ -134,7 +134,7 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
             string xsltTests = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSONTests.xslt";
             TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTests, "Tests.html");
             // Then HTML file is created with only the TRX Tests data presented.
-            Assert.Equals(string.Empty, "Tests.html");
+            Assert.AreEqual(true, TestReportHTML.Result);
         }
 
         private const string ValidReportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
