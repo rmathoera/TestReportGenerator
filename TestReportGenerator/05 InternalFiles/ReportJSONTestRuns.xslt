@@ -11,24 +11,64 @@
         <!--<xsl:apply-templates select="TestResult"/>-->
         <xsl:apply-templates select="TestResult/TestRun"/>
       </body>
+      <style>
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        }
+        th, td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+        }
+        th {
+        background-color: #f2f2f2;
+        }
+        .bold{
+        font-weight: bold;
+      </style>
     </html>
   </xsl:template>
 
   <xsl:template match="TestRun">
-    <div>
-      <p>        TestrunNumber: <xsl:value-of select="TestrunNumber"/>
-      </p>
-      <p>        Testname: <xsl:value-of select="Testname"/>
-      </p>
-      <p>        Testmachine: <xsl:value-of select="Testmachine"/>
-      </p>
-      <p>        Testenvironment: <xsl:value-of select="Testenvironment"/>
-      </p>
-      <p>        Testexcuter: <xsl:value-of select="Testexcuter"/>
-      </p>
-      <p>        Operatingsystem: <xsl:value-of select="Operatingsystem"/>
-      </p>
-    </div>
+    <table>
+      <tr>
+        <td class="bold">Test Run Number : </td>
+        <td>
+          <xsl:value-of select="TestrunNumber"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="bold">Test Name : </td>
+        <td>
+          <xsl:value-of select="Testname"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="bold">Test Machine : </td>
+        <td>
+          <xsl:value-of select="Testmachine"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="bold">Test Environment : </td>
+        <td>
+          <xsl:value-of select="Testenvironment"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="bold">Test Executer : </td>
+        <td>
+          <xsl:value-of select="Testexcuter"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="bold">Operatingsystem : </td>
+        <td>
+          <xsl:value-of select="Operatingsystem"/>
+        </td>
+      </tr>
+    </table>
   </xsl:template>
 
 </xsl:stylesheet>

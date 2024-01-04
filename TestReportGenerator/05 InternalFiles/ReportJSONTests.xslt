@@ -43,22 +43,22 @@
 
   <xsl:template match="TestResult">
     <div>
-      <div>
-        Test Suite Name: <xsl:value-of select="Testsuitename"/>
-      </div>
+      <span class="label">Test Suite Name : </span>
+      <xsl:value-of select="Testsuitename"/>
       <xsl:apply-templates select="TestRun"/>
     </div>
   </xsl:template>
 
   <xsl:template match="TestRun">
     <div>
-      <p>
-        Testname: <xsl:value-of select="Testname"/>
-      </p>
-      <h3>Tests</h3>
-      <ul>
+      <div>
+        <span class="label">Test Name : </span>
+        <xsl:value-of select="Testname"/>
+      </div>
+      <div>
+        <span class="label">Tests</span>
         <xsl:apply-templates select="Tests"/>
-      </ul>
+      </div>
     </div>
   </xsl:template>
 
