@@ -16,27 +16,18 @@
 
   <xsl:template match="TestRun">
     <div>
-      <h2>Test Run Details</h2>
-      <p>
-        TestrunNumber: <xsl:value-of select="TestrunNumber"/>
+      <p>        TestrunNumber: <xsl:value-of select="TestrunNumber"/>
       </p>
-      <p>
-        Testname: <xsl:value-of select="Testname"/>
+      <p>        Testname: <xsl:value-of select="Testname"/>
       </p>
-      <p>
-        Testmachine: <xsl:value-of select="Testmachine"/>
+      <p>        Testmachine: <xsl:value-of select="Testmachine"/>
       </p>
-      <p>
-        Testenvironment: <xsl:value-of select="Testenvironment"/>
+      <p>        Testenvironment: <xsl:value-of select="Testenvironment"/>
       </p>
-      <p>
-        Testexcuter: <xsl:value-of select="Testexcuter"/>
+      <p>        Testexcuter: <xsl:value-of select="Testexcuter"/>
       </p>
-      <p>
-        Operatingsystem: <xsl:value-of select="Operatingsystem"/>
+      <p>        Operatingsystem: <xsl:value-of select="Operatingsystem"/>
       </p>
-      <!--<h4>Tests</h4>
-      <xsl:apply-templates select="Tests"/>-->
     </div>
   </xsl:template>
 

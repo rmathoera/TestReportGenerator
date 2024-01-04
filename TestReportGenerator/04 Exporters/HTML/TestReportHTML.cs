@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Xsl;
 using System.Xml;
 using Newtonsoft.Json;
+using System.Xml.Schema;
 
 namespace TestReportGenerator._04_Exporters.HTML
 {
@@ -318,7 +319,13 @@ namespace TestReportGenerator._04_Exporters.HTML
             {
                 // Load XML data
                 XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load($@"{reportJSON}");
+                xmlDoc.Load(reportJSON);
+
+                // Load XSD schema
+                XmlSchemaSet schemas = new XmlSchemaSet();
+                schemas.Add("", @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xsd");
+                xmlDoc.Schemas = schemas;
+                xmlDoc.Validate(null);
 
                 // Load XSLT stylesheet
                 XslCompiledTransform xslt = new XslCompiledTransform();
@@ -344,7 +351,13 @@ namespace TestReportGenerator._04_Exporters.HTML
 
                     // Write the updated content back to the file
                     File.WriteAllText(htmlPageName, htmlOutput);
+
+                    Console.WriteLine("Transformation completed successfully.");
                 }
+            }
+            catch (XmlSchemaValidationException ex)
+            {
+                Console.WriteLine("XML Schema Validation Error: " + ex.Message);
             }
             catch (Exception ex)
             {

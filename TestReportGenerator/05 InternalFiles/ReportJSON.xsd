@@ -31,9 +31,18 @@
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="Logtimestamp" type="xs:string"/>
-                          <xs:element name="Loglinedescription" type="xs:string"/>
-                          <xs:element name="LogAttachmentId" type="xs:int" minOccurs="0"/>
                           <xs:element name="LogLineDescription" type="xs:string" minOccurs="0"/>
+                          <xs:element name="LogAttachmentId">
+                            <xs:simpleType>
+                              <xs:union memberTypes="xs:integer">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value=""/>
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:union>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>

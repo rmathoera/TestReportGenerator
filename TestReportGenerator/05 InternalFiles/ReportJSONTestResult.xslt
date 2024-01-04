@@ -15,7 +15,6 @@
 
   <xsl:template match="TestResult">
     <div>
-      <h2>Test Result Details</h2>
       <p>
         TemplateNameDocument: <xsl:value-of select="TemplateNameDocument"/>
       </p>
@@ -28,8 +27,6 @@
       <p>
         Testsuitename: <xsl:value-of select="Testsuitename"/>
       </p>
-      <!--<h3>Test Runs</h3>
-      <xsl:apply-templates select="TestRun"/>-->
     </div>
   </xsl:template>
 
