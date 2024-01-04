@@ -358,10 +358,22 @@ namespace TestReportGenerator._04_Exporters.HTML
             catch (XmlSchemaValidationException ex)
             {
                 Console.WriteLine("XML Schema Validation Error: " + ex.Message);
+                throw new XmlSchemaValidationException();
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("File not found: " + ex.Message);
+                throw new FileNotFoundException();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Console.WriteLine("Unauthorized Access: " + ex.Message);
+                throw new UnauthorizedAccessException();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                throw new Exception();
             }
         }
     }

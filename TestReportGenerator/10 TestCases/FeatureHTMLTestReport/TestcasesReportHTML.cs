@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 using TestReportGenerator._04_Exporters.HTML;
 
 namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
@@ -135,5 +136,73 @@ namespace TestReportGenerator._10_TestCases.FeatureHTMLTestReport
             // Then HTML file is created with only the TRX Tests data presented.
             Assert.Equals(string.Empty, "Tests.html");
         }
+
+        private const string ValidReportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSON.xml";
+        private const string ValidXSLT = @"C:\Repos\TestReportGenerator\TestReportGenerator\05 InternalFiles\ReportJSONTests.xslt";
+        private const string InvalidReportJSON = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\InvalidReportJSON.xml";
+        private const string InvalidXSLT = @"C:\Repos\TestReportGenerator\TestReportGenerator\10 TestCases\TestData\InvalidReportJSONTests.xslt";
+        private const string OutputHTML = "Tests.html";
+
+        [TestMethod]
+        public void CreateReportHTMLFromXmlAndXslt_ValidInputs_Success()
+        {
+            // Arrange
+            string reportJSON = ValidReportJSON;
+            string xsltTestResult = ValidXSLT;
+            string htmlPageName = OutputHTML;
+
+            // Act
+            TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTestResult, htmlPageName);
+
+            // Assert
+            // Check if the output HTML file is created
+            Assert.IsTrue(File.Exists(htmlPageName));
+        }
+
+        [TestMethod]
+        public void CreateReportHTMLFromXmlAndXslt_InvalidXML_ThrowsXmlSchemaValidationException()
+        {
+            // Arrange
+            string reportJSON = InvalidReportJSON; // Invalid XML file path
+            string xsltTestResult = ValidXSLT;
+            string htmlPageName = OutputHTML;
+
+            // Act & Assert
+            Assert.ThrowsException<XmlSchemaValidationException>(() =>
+            {
+                TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTestResult, htmlPageName);
+            });
+        }
+
+        [TestMethod]
+        public void CreateReportHTMLFromXmlAndXslt_InvalidXSLT_ThrowsException()
+        {
+            // Arrange
+            string reportJSON = ValidReportJSON;
+            string xsltTestResult = InvalidXSLT; // Invalid XSLT file path
+            string htmlPageName = OutputHTML;
+
+            // Act & Assert
+            Assert.ThrowsException<System.IO.FileNotFoundException>(() =>
+            {
+                TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTestResult, htmlPageName);
+            });
+        }
+
+        [TestMethod]
+        public void CreateReportHTMLFromXmlAndXslt_NoWritePermission_ThrowsException()
+        {
+            // Arrange
+            string reportJSON = ValidReportJSON;
+            string xsltTestResult = ValidXSLT;
+            string htmlPageName = @"C:\Windows\InvalidHTML.html"; // Invalid output path without write permission
+
+            // Act & Assert
+            Assert.ThrowsException<UnauthorizedAccessException>(() =>
+            {
+                TestReportHTML.CreateReportHTMLFromXmlAndXslt(reportJSON, xsltTestResult, htmlPageName);
+            });
+        }
+
     }
 }

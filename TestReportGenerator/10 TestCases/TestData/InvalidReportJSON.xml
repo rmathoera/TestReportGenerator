@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestResult>
+  <TemplateNameDocument>TestResult</TemplateNameDocument>
+  <ProjectTemplate>CompanyXYZTheme</ProjectTemplate>
+  <VersionDocument>1</VersionDocument>
+  <Testsuitename>testsuite TEST OF XYZ project</Testsuitename>
+  <TestRun>
+    <TestrunNumber>Invalid NumberOne</TestrunNumber>
+    <Testname>Test Run Name</Testname>
+    <Testmachine>TEST-MACHINE-ENV</Testmachine>
+    <Testenvironment>pipeline CI or CD</Testenvironment>
+    <Testexcuter>name of user or system that execute test suite</Testexcuter>
+    <Operatingsystem>Windows</Operatingsystem>
+    <Tests>
+      <TestCaseId>123</TestCaseId>
+      <TestCaseName>Test Case 123</TestCaseName>
+      <TestCategory>Functional Acceptance Test</TestCategory>
+      <StartDateTime>2023-12-01 11:30:00.000</StartDateTime>
+      <StopDateTime>2023-12-01 11:35:10.000</StopDateTime>
+      <Duration>15600</Duration>
+      <TestResult>Passed</TestResult>
+      <TestLogLine>
+        <Logtimestamp>2023-12-01 11:30:05.000</Logtimestamp>
+        <Loglinedescription>test is started</Loglinedescription>
+        <LogAttachmentId>InvalidAlphaNumeric</LogAttachmentId>
+      </TestLogLine>
+      <TestLogLine>
+        <Logtimestamp>2023-12-01 11:30:06.000</Logtimestamp>
+        <Loglinedescription>first test step executed</Loglinedescription>
+        <LogAttachmentId/>
+      </TestLogLine>
+      <TestLogLine>
+        <Logtimestamp>2023-12-01 11:33:08.000</Logtimestamp>
+        <LogLineDescription>second test step executed</LogLineDescription>
+        <LogAttachmentId/>
+      </TestLogLine>
+      <TestLogLine>
+        <Logtimestamp>2023-12-01 11:34:05.000</Logtimestamp>
+        <LogLineDescription>test is stopping</LogLineDescription>
+        <LogAttachmentId/>
+      </TestLogLine>
+    </Tests>
+    <Tests>
+      <TestCaseId>2568</TestCaseId>
+      <TestCaseName>Test Case 2568</TestCaseName>
+      <TestCategory>Unit Test</TestCategory>
+      <StartDateTime>2023-12-01 11:56:00.000</StartDateTime>
+      <StopDateTime>2023-12-01 11:58:10.000</StopDateTime>
+      <Duration>15600</Duration>
+      <TestResult>Failed</TestResult>
+      <TestLogLine>
+        <Logtimestamp>2023-12-01 11:56:05.000</Logtimestamp>
+        <LogLineDescription>test is started</LogLineDescription>
+        <LogAttachmentId/>
+      </TestLogLine>
+      <TestLogLine>
+        <Logtimestamp>2023-12-01 11:56:06.000</Logtimestamp>
+        <LogLineDescription>first test step executed</LogLineDescription>
+        <LogAttachmentId/>
+      </TestLogLine>
+      <TestLogLine>
+        <Logtimestamp>2023-12-01 11:57:08.000</Logtimestamp>
+        <LogLineDescription>second test step executed</LogLineDescription>
+        <LogAttachmentId/>
+      </TestLogLine>
+      <TestLogLine>
+        <Logtimestamp>2023-12-01 11:58:05.000</Logtimestamp>
+        <LogLineDescription>test is stopping</LogLineDescription>
+        <LogAttachmentId/>
+      </TestLogLine>
+    </Tests>
+  </TestRun>
+</TestResult>
