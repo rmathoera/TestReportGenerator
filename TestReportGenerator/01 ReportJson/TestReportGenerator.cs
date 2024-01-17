@@ -2,7 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using Newtonsoft.Json; // Ensure you have the Newtonsoft.Json package installed via NuGet
+    using Newtonsoft.Json;
+    using System.Text.Json;
 
     public class TestLogLine
     {
@@ -34,7 +35,7 @@
         public List<Test>? Test { get; set; }
     }
 
-    public class RootObject
+    public class TestReport
     {
         public string? TemplateNameDocument { get; set; }
         public string? ProjectTemplate { get; set; }
@@ -55,6 +56,10 @@
             }
 
             return JsonConvert.SerializeObject(this, settings);
+        }
+        public string ToString()
+        {
+            return (this.ToString());
         }
     }
 }

@@ -7,9 +7,9 @@
         public int VersionDocument { get; set; }
         public string? Testsuitename { get; set; }
         public TestRun? TestRun { get; set; }
-        public RootObject TestReport()
+        public TestReport TestReport()
         {
-            RootObject root = new RootObject
+            TestReport root = new TestReport
             {
                 TemplateNameDocument = TemplateNameDocument,
                 ProjectTemplate = ProjectTemplate,
